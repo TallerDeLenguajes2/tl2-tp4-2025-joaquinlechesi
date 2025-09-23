@@ -1,0 +1,6 @@
+@tl2_tp4_2025_joaquinlechesi_HostAddress = http://localhost:5076
+
+GET {{tl2_tp4_2025_joaquinlechesi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
