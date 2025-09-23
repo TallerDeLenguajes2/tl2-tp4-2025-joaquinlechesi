@@ -1,4 +1,4 @@
-namespace CadeteriaModels;
+namespace Cadeteria;
 public class Cadete
 {
     //Atributos

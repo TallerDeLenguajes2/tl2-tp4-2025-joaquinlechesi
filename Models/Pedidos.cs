@@ -1,4 +1,4 @@
-namespace CadeteriaModels;
+namespace Cadeteria;
 public class Pedidos //relacion fuerte con el cliente
 {
     public int numero{ get; set; }
