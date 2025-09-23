@@ -1,4 +1,4 @@
-namespace Cadeteria;
+namespace CadeteriaModels;
 public class Cliente //cuendo creo un cliente, puedo crear un pedido
 {
     // Atributos
