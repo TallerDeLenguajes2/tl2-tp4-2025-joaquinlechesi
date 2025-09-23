@@ -1,4 +1,4 @@
-namespace Cadeteria;
+namespace Cadeteria.Models;
 public class Cadeteria
 {
     public string nombre { get; set; }
