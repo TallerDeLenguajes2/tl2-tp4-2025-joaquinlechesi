@@ -1,4 +1,4 @@
-namespace Cadeteria.Models;
+namespace MiCadeteria.Models;
 public class CargaDeDatos //que formato tiene la informacion dentro de un archivo .csv
 {
     public Cadeteria cargarCadeteria(string ruta)

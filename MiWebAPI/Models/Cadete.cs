@@ -1,4 +1,4 @@
-namespace Cadeteria.Models;
+namespace MiCadeteria.Models;
 public class Cadete
 {
     //Atributos

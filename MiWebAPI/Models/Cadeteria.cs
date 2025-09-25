@@ -1,4 +1,4 @@
-namespace Cadeteria.Models;
+namespace MiCadeteria.Models;
 public class Cadeteria
 {
     public string nombre { get; set; }
@@ -20,6 +20,10 @@ public class Cadeteria
         this.nombre = nombre;
         this.telefono = telefono;
         this.cadetes = listado;
+    }
+    public Cadeteria()
+    {
+        
     }
     public void agregarListaDeCadetes(List<Cadete> lista) //agrega por aparte la lista de cadetes
     {
