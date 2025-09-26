@@ -14,6 +14,7 @@ namespace MiCadeteria
         {
             //constructor de la clase
             DatosCarga = new AccesoADatosJSON();
+            NuevaCadeteria = DatosCarga.NuevaCadeteria
         }
         //[HttpGet]
         // public IActionResult ObtenerCadeteria()

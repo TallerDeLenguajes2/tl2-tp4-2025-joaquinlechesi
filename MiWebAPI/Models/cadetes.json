@@ -1,0 +1,14 @@
+[
+    {
+        "Id": 1,
+        "Nombre": "jose",
+        "Direccion": "lamadrid 432",
+        "Telefono": "381"
+    },
+    {
+        "Id": 2,
+        "Nombre": "lucas",
+        "direccion": "san juan 432",
+        "Telefono": "382"
+    }
+]
