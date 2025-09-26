@@ -7,20 +7,33 @@ namespace MiCadeteria
     [Route("api/{controller}")]
     public class CadeteriaController : ControllerBase
     {
-        IAccesoADatos DatosCarga = null;
-        Cadeteria NuevaCadeteria = null;
+        private IAccesoADatos DatosCarga = null;
+        private Cadeteria NuevaCadeteria = null;
         //Informe NuevoInforme = null; //falta hacer informe
-        public CadeteriaController()
+        public CadeteriaController() //recordar ingresar el nombre de la clase en el "controller"
         {
             //constructor de la clase
-            DatosCarga = new AccesoADatosJSON(); //uso la clase AccesoADatosJSON
-            NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json");
-            NuevaCadeteria.agregarListaDeCadetes(DatosCarga.LecturaDeCadetes("cadetes.json"));
+            //DatosCarga = new AccesoADatosJSON(); //uso la clase AccesoADatosJSON
+            this.DatosCarga = new AccesoADatosJSON();
+            this.NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json"); //la ruta relativa que busca el metodo es la carpeta del proyecto
+            if (NuevaCadeteria != null)
+            {
+                this.NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("..\\Models\\cadetes.json");
+            }
         }
-        [HttpGet("getPedidos")]
-        public IActionResult GetPedidos()
+        //[HttpGet("getPedidos")]
+        //public IActionResult GetPedidos()
+        //{
+        //    return Ok(NuevaCadeteria.ListadoPedidos);
+        //}
+        [HttpGet("getCadeteria")]
+        public ActionResult GetCadeteria()
         {
-            return Ok(NuevaCadeteria.ListaPedidos);//le pide al acceso a datos los pedidos existentes
+            if (this.NuevaCadeteria != null)
+            {
+                return Ok("Cadeteria creada.");
+            }
+            return BadRequest("No se pudo crear la cadeteria.");
         }
         //[HttpGet]
         // public IActionResult ObtenerCadeteria()

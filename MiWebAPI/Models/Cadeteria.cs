@@ -201,5 +201,8 @@ public class Cadeteria
         //     Cadete nuevoCadete = null;
         // }
     }
-    
+    public string GetNombre()
+    {
+        return this.nombre;
+    }
 }
