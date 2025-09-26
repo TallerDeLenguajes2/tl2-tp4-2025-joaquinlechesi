@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MiCadeteria.Models;
+namespace MiCadeteria;
 
 public class AccesoADatosJSON : IAccesoADatos
 {

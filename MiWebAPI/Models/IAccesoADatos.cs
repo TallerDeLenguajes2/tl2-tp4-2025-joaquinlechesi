@@ -1,4 +1,4 @@
-namespace MiCadeteria.Models;
+namespace MiCadeteria;
 public interface IAccesoADatos
 {
     //falta lectura de cadeteria

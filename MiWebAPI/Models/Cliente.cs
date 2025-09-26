@@ -1,4 +1,4 @@
-namespace MiCadeteria.Models;
+namespace MiCadeteria;
 public class Cliente //cuendo creo un cliente, puedo crear un pedido
 {
     // Atributos
@@ -14,5 +14,5 @@ public class Cliente //cuendo creo un cliente, puedo crear un pedido
         this.telefono = telefono;
         this.datosRefenciaDireccion = datosRefenciaDireccion;
     }
-
+    
 }

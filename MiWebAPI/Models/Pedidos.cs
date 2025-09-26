@@ -1,24 +1,27 @@
-namespace MiCadeteria.Models;
+namespace MiCadeteria;
 public class Pedidos //relacion fuerte con el cliente
 {
     public int numero{ get; set; }
     public string obs{ get; set; }
     private Cliente cliente;
     public bool estado { get; set; }
+    public Cadete cadeteAsignado{ get; set; }
     // Constructor
-    public Pedidos(int numero, string obs, Cliente cliente)
+    public Pedidos(int numero, string obs, Cliente cliente, Cadete cadete)
     {
         this.numero = numero;
         this.obs = obs;
         this.cliente = cliente;
         this.estado = false;
+        this.cadeteAsignado = cadete;
     }
     public Pedidos(int numero, string obs)
     {
         this.numero = numero;
         this.obs = obs;
-        //this.cliente = cliente;
         this.estado = false;
+        this.cliente = null;
+        this.cadeteAsignado = null;
     }
     // Metodos
     public void agregarCliente(Cliente nuevoCliente)
@@ -34,7 +37,10 @@ public class Pedidos //relacion fuerte con el cliente
         Console.WriteLine(cliente.nombre);
         Console.WriteLine(cliente.telefono);
     }
-
+    public void AsignarCadete(Cadete cadete)
+    {
+        this.cadeteAsignado = cadete;
+    }
     // public Pedidos(int numero, string cliente, )
     // {
     // }

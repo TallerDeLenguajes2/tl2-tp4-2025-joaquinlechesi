@@ -13,13 +13,19 @@ namespace MiCadeteria
         public CadeteriaController()
         {
             //constructor de la clase
-            DatosCarga = new AccesoADatosJSON();
-            NuevaCadeteria = DatosCarga.NuevaCadeteria
+            DatosCarga = new AccesoADatosJSON(); //uso la clase AccesoADatosJSON
+            NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json");
+            NuevaCadeteria.agregarListaDeCadetes(DatosCarga.LecturaDeCadetes("cadetes.json"));
+        }
+        [HttpGet("getPedidos")]
+        public IActionResult GetPedidos()
+        {
+            return Ok(NuevaCadeteria.ListaPedidos);//le pide al acceso a datos los pedidos existentes
         }
         //[HttpGet]
         // public IActionResult ObtenerCadeteria()
         // {
-            
+
         // }
         // public IActionResult PostCadeteria(string path)
         // {
