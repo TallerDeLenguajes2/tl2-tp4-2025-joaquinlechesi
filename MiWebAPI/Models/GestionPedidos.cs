@@ -1,3 +1,4 @@
+using System.Text.Json;
 namespace MiCadeteria;
 
 public class GestionPedidos
@@ -40,7 +41,8 @@ public class GestionPedidos
                 }
                 Console.WriteLine($"{pedido.numero} - {pedido.obs} - {cadete} - {estado}");
             }
-        }else
+        }
+        else
         {
             Console.WriteLine("No hay pedidos en la lista.");
         }
@@ -56,7 +58,7 @@ public class GestionPedidos
             }
         }
     }
-    public void ReasignacionDeCadete(List<Pedidos> ListadoPedidos,List<Cadete> ListadoCadetes,int IdCadete, int IdPedido)
+    public void ReasignacionDeCadete(List<Pedidos> ListadoPedidos, List<Cadete> ListadoCadetes, int IdCadete, int IdPedido)
     {
         foreach (var pedido in ListadoPedidos)
         {
@@ -72,6 +74,19 @@ public class GestionPedidos
                     }
                 }
                 break;
+            }
+        }
+    }
+    public void GuardarPedido(string ruta, Pedidos NuevoPedido)
+    {
+        if (File.Exists(ruta))
+        {
+            string PedidoGuardar = JsonSerializer.Serialize(NuevoPedido);
+            FileStream fs = new FileStream(ruta, FileMode.Open);
+            using (StreamWriter st = new StreamWriter(fs))
+            {
+                st.WriteLine(PedidoGuardar);
+                st.Close();
             }
         }
     }

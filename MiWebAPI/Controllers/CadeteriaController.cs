@@ -47,9 +47,11 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            NuevaCadeteria.AgregarPedido(NuevoPedido);
-            //falta guardar el pedido
-            return Ok(NuevoPedido); //incompleto
+            //NuevaCadeteria.AgregarPedido(NuevoPedido);
+            //var GestionArchivos = new GestionPedidos();
+            //GestionArchivos.GuardarPedido("pedidos.json", NuevoPedido);
+            
+            return Ok(NuevoPedido.numero); //incompleto
         }
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)

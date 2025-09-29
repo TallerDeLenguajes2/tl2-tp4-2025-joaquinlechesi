@@ -23,6 +23,10 @@ public class Pedidos //relacion fuerte con el cliente
         this.cliente = null;
         this.cadeteAsignado = null;
     }
+    public Pedidos()
+    {
+        //Constructor para el json
+    }
     // Metodos
     public void agregarCliente(Cliente nuevoCliente)
     {
