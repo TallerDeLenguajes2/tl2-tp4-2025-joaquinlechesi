@@ -205,4 +205,8 @@ public class Cadeteria
     {
         return this.nombre;
     }
+    public void AgregarPedido(Pedidos NuevoPedido)
+    {
+        this.ListadoPedidos.Add(NuevoPedido);
+    }
 }

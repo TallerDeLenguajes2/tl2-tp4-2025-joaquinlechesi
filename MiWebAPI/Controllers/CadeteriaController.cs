@@ -42,11 +42,12 @@ namespace MiCadeteria
         [HttpGet("getInforme")] //pendiente
         public IActionResult GetInforme()
         {
-            return Ok();
+            return Ok(); //incompleto //para el final
         }
         [HttpPost("postAgregarPedido")]
-        public IActionResult PostAgregarPedido()
+        public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedodo)
         {
+            NuevaCadeteria.
             return Ok(); //incompleto
         }
         [HttpPut("putAsignarPedido")]
