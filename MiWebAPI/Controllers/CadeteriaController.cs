@@ -48,10 +48,10 @@ namespace MiCadeteria
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
             //NuevaCadeteria.AgregarPedido(NuevoPedido);
-            //var GestionArchivos = new GestionPedidos();
-            //GestionArchivos.GuardarPedido("pedidos.json", NuevoPedido);
+            var GestionArchivos = new GestionPedidos(); //a mejorar
+            GestionArchivos.GuardarPedido("pedidos.json", NuevoPedido);
             
-            return Ok(NuevoPedido.numero); //incompleto
+            return Created(); //incompleto
         }
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)

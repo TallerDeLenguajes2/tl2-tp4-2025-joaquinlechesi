@@ -1,0 +1,11 @@
+{
+    "numero": 1,
+    "obs": "milanesa",
+    "estado": false,
+    "cadeteAsignado": {
+        "Id": 0,
+        "Nombre": "string",
+        "Direccion": "string",
+        "Telefono": "string"
+    }
+}
