@@ -170,7 +170,7 @@ public class Cadeteria
         double resultado = 0;
         foreach (var pedido in ListadoPedidos)
         {
-            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado))
+            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado == 1))
             {
                 resultado++;
             }

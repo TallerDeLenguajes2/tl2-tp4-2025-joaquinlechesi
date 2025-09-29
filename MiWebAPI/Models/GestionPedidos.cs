@@ -35,7 +35,7 @@ public class GestionPedidos
                 {
                     cadete = "CADETE:" + pedido.cadeteAsignado.Nombre;
                 }
-                if (!(pedido.estado))
+                if (pedido.estado == 0)
                 {
                     estado = "NO " + estado;
                 }
@@ -53,7 +53,7 @@ public class GestionPedidos
         {
             if (pedido.numero == iDPedido)
             {
-                pedido.estado = true;
+                pedido.estado = 1;
                 break;
             }
         }
@@ -62,7 +62,7 @@ public class GestionPedidos
     {
         foreach (var pedido in ListadoPedidos)
         {
-            if (pedido.numero == IdPedido && !(pedido.estado))
+            if (pedido.numero == IdPedido && pedido.estado == 0)
             {
                 //nuevoPedido = pedido;
                 foreach (var cadete in ListadoCadetes)

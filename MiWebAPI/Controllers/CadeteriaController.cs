@@ -48,6 +48,9 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
+            NuevoPedido.cadeteAsignado = null;
+            NuevoPedido.estado = 0; //evita llenar campos que no son cargados todavia
+            NuevoPedido.numero = NuevaCadeteria.ListadoPedidos.Count() + 1;
             NuevaCadeteria.AgregarPedido(NuevoPedido);
             var GestionArchivos = new GestionPedidos(); //a mejorar
             GestionArchivos.GuardarListadoPedido("pedidos.json", NuevaCadeteria.ListadoPedidos);
