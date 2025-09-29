@@ -14,11 +14,11 @@ namespace MiCadeteria
         {
             //constructor de la clase
             //DatosCarga = new AccesoADatosJSON(); //uso la clase AccesoADatosJSON
-            this.DatosCarga = new AccesoADatosJSON();
-            this.NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json"); //la ruta relativa que busca el metodo es la carpeta del proyecto
+            DatosCarga = new AccesoADatosJSON();
+            NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json"); //la ruta relativa que busca el metodo es la carpeta del proyecto
             if (NuevaCadeteria != null)
             {
-                this.NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("cadetes.json");
+                NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("cadetes.json");
             }
         }
         [HttpGet("getPedidos")]
@@ -44,11 +44,12 @@ namespace MiCadeteria
         {
             return Ok(); //incompleto //para el final
         }
-        [HttpPost("postAgregarPedido")]
-        public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedodo)
+        [HttpPost("postAgregarPedido")] //debo guardar el pedido
+        public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            NuevaCadeteria.
-            return Ok(); //incompleto
+            NuevaCadeteria.AgregarPedido(NuevoPedido);
+            //falta guardar el pedido
+            return Ok(NuevoPedido); //incompleto
         }
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)
