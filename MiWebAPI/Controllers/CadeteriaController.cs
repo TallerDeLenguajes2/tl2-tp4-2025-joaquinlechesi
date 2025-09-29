@@ -19,14 +19,15 @@ namespace MiCadeteria
             if (NuevaCadeteria != null)
             {
                 NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("cadetes.json");
+                NuevaCadeteria.ListadoPedidos = DatosCarga.ListadoDePedidos("pedidos.json");
             }
         }
         [HttpGet("getPedidos")]
-        public IActionResult GetPedidos() //retorna la lista de pedidos //pendiente
+        public IActionResult GetPedidos() //retorna la lista de pedidos //funcionando
         {
             if (NuevaCadeteria.ListadoPedidos != null)
             {
-                Ok(NuevaCadeteria.ListadoPedidos);
+                return Ok(NuevaCadeteria.ListadoPedidos);
             }
             return BadRequest("No hay lista de pedidos en la cadeteria");
         }
@@ -47,9 +48,9 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            //NuevaCadeteria.AgregarPedido(NuevoPedido);
+            NuevaCadeteria.AgregarPedido(NuevoPedido);
             var GestionArchivos = new GestionPedidos(); //a mejorar
-            GestionArchivos.GuardarPedido("pedidos.json", NuevoPedido);
+            GestionArchivos.GuardarListadoPedido("pedidos.json", NuevaCadeteria.ListadoPedidos);
             
             return Created(); //incompleto
         }

@@ -27,8 +27,18 @@ public class AccesoADatosJSON : IAccesoADatos
         }
         return ListaDeCadetes;
     }
+    public List<Pedidos> ListadoDePedidos(string path)
+    {
+        if (File.Exists(path))
+        {
+            string texto = File.ReadAllText(path);
+            var Listado = JsonSerializer.Deserialize<List<Pedidos>>(texto);
+            return Listado;
+        }
+        return new List<Pedidos>(); //sería como devolver una lista vacia
+    }
     public void EscrituraDeDatos(string datos)
     {
-        
+
     }
 }

@@ -77,17 +77,14 @@ public class GestionPedidos
             }
         }
     }
-    public void GuardarPedido(string ruta, Pedidos NuevoPedido)
+    public void GuardarListadoPedido(string ruta, List<Pedidos> ListaDePedidos)
     {
-        if (File.Exists(ruta))
+        string ListadoPedidos = JsonSerializer.Serialize<List<Pedidos>>(ListaDePedidos);
+        FileStream fs = new FileStream(ruta, FileMode.Create);
+        using (StreamWriter st = new StreamWriter(fs))
         {
-            string PedidoGuardar = JsonSerializer.Serialize(NuevoPedido);
-            FileStream fs = new FileStream(ruta, FileMode.Open);
-            using (StreamWriter st = new StreamWriter(fs))
-            {
-                st.WriteLine(PedidoGuardar);
-                st.Close();
-            }
+            st.WriteLine(ListadoPedidos);
+            st.Close();
         }
     }
 }

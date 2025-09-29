@@ -1,11 +1,24 @@
-{
-    "numero": 1,
-    "obs": "milanesa",
-    "estado": false,
-    "cadeteAsignado": {
-        "Id": 0,
-        "Nombre": "string",
-        "Direccion": "string",
-        "Telefono": "string"
+[
+    {
+        "numero": 1,
+        "obs": "milanesa",
+        "estado": false,
+        "cadeteAsignado": {
+            "Id": 0,
+            "Nombre": "string",
+            "Direccion": "string",
+            "Telefono": "string"
+        }
+    },
+    {
+        "numero": 1,
+        "obs": "milanesa",
+        "estado": true,
+        "cadeteAsignado": {
+            "Id": 0,
+            "Nombre": "string",
+            "Direccion": "string",
+            "Telefono": "string"
+        }
     }
-}
+]
