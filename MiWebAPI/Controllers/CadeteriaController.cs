@@ -18,44 +18,32 @@ namespace MiCadeteria
             this.NuevaCadeteria = DatosCarga.NuevaCadeteria("cadeteria.json"); //la ruta relativa que busca el metodo es la carpeta del proyecto
             if (NuevaCadeteria != null)
             {
-                this.NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("..\\Models\\cadetes.json");
+                this.NuevaCadeteria.ListaDeCadetes = DatosCarga.LecturaDeCadetes("cadetes.json");
             }
         }
-        //[HttpGet("getPedidos")]
-        //public IActionResult GetPedidos()
-        //{
-        //    return Ok(NuevaCadeteria.ListadoPedidos);
-        //}
-        [HttpGet("getCadeteria")]
-        public ActionResult GetCadeteria()
+        [HttpGet("getPedidos")]
+        public IActionResult GetPedidos() //retorna la lista de pedidos //pendiente
         {
-            if (this.NuevaCadeteria != null)
+            if (NuevaCadeteria.ListadoPedidos != null)
             {
-                return Ok("Cadeteria creada.");
+                Ok(NuevaCadeteria.ListadoPedidos);
             }
-            return BadRequest("No se pudo crear la cadeteria.");
+            return BadRequest("No hay lista de pedidos en la cadeteria");
         }
-        //[HttpGet]
-        // public IActionResult ObtenerCadeteria()
+        [HttpGet("getCadetes")]
+        public ActionResult GetCadetes()
+        {
+            if (this.NuevaCadeteria.ListaDeCadetes != null)
+            {
+                return Ok(NuevaCadeteria.ListaDeCadetes);
+            }
+            return BadRequest("No hay lista de cadetes"); //mensaje pendiente de corregir
+        }
+        //[HttpGet("getInforme")] //pendiente
+        // public IActionResult GetInforme()
         // {
 
         // }
-        // public IActionResult PostCadeteria(string path)
-        // {
-
-        //     if (true)
-        //     {
-        //         return NotFound("Ruta incorrecta");
-        //     }
-        // }
-        // [HttpGet]
-        // public IActionResult GetPedidos() //2)c) endpoint
-        // {
-        //     if (true)
-        //     {
-
-        //     }
-        //     return Ok();
-        // }
+        
     }
 }

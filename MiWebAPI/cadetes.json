@@ -8,7 +8,7 @@
     {
         "Id": 2,
         "Nombre": "lucas",
-        "direccion": "san juan 432",
+        "Direccion": "san juan 432",
         "Telefono": "382"
     }
 ]
