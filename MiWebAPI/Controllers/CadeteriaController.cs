@@ -39,11 +39,30 @@ namespace MiCadeteria
             }
             return BadRequest("No hay lista de cadetes"); //mensaje pendiente de corregir
         }
-        //[HttpGet("getInforme")] //pendiente
-        // public IActionResult GetInforme()
-        // {
-
-        // }
-        
+        [HttpGet("getInforme")] //pendiente
+        public IActionResult GetInforme()
+        {
+            return Ok();
+        }
+        [HttpPost("postAgregarPedido")]
+        public IActionResult PostAgregarPedido()
+        {
+            return Ok(); //incompleto
+        }
+        [HttpPut("putAsignarPedido")]
+        public IActionResult PutAsignarPedido(int idPedido, int idCadete)
+        {
+            return Ok(); //incompleto
+        }
+        [HttpPut("putCambiarEstadoPedido")]
+        public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
+        {
+            return Ok(); //incompleto
+        }
+        [HttpPut("putCambiarCadetePedido")]
+        public IActionResult PutCambiarCadetePedido(int idPedido, int idNuevoCadete)
+        {
+            return Ok(); //incompleto
+        }
     }
 }
