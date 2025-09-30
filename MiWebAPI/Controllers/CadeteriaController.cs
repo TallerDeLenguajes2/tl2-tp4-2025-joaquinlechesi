@@ -26,7 +26,7 @@ namespace MiCadeteria
         [HttpGet("getPedidos")]
         public IActionResult GetPedidos() //retorna la lista de pedidos //funcionando
         {
-            if (NuevaCadeteria.ListadoPedidos.Count() != 0)
+            if (NuevaCadeteria.CantidadPedidos() > 0)
             {
                 return Ok(NuevaCadeteria.ListadoPedidos);
             }
@@ -49,7 +49,6 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            NuevoPedido.numero = NuevaCadeteria.ListadoPedidos.Count() + 1;
             NuevaCadeteria.AgregarPedido(NuevoPedido);
             var GestionArchivos = new AccesoADatosJSON();
             GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
@@ -58,7 +57,7 @@ namespace MiCadeteria
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)
         {
-            if (NuevaCadeteria.ListadoPedidos.Count() > 0)
+            if (NuevaCadeteria.CantidadPedidos() > 0)
             {
                 NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
                 var GestionArchivos = new AccesoADatosJSON();
