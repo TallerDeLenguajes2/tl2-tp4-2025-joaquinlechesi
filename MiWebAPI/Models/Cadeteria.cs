@@ -170,7 +170,7 @@ public class Cadeteria
         double resultado = 0;
         foreach (var pedido in ListadoPedidos)
         {
-            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado == 1))
+            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado == EstadoPedido.Entregado ))
             {
                 resultado++;
             }
@@ -190,6 +190,7 @@ public class Cadeteria
                     if (cadete.Id == IdCadete)
                     {
                         pedido.cadeteAsignado = cadete;
+                        pedido.estado = EstadoPedido.Asignado;
                         return $"Se asigno el pedido numero {pedido.numero} al cadete numero {cadete.Id}";
                         //break;
                     }
@@ -218,5 +219,17 @@ public class Cadeteria
     {
         return this.ListadoPedidos.Count();
     }
-    //public void
+    public string CambiarEstado(int idPedido, int NuevoEstado)
+    {
+        
+        foreach (var Pedido in ListadoPedidos)
+        {
+            if (Pedido.numero == idPedido)
+            {
+                Pedido.estado = (EstadoPedido)NuevoEstado; //puedo usar el casteo
+                return $"Se le cambio el estado al pedido numero {Pedido.numero}";
+            }
+        }
+        return "No se encontro el pedido";
+    }
 }

@@ -4,7 +4,7 @@ public class Pedidos //relacion fuerte con el cliente
     public int numero{ get; set; }
     public string obs { get; set; }
     private Cliente cliente;
-    public int estado { get; set; }
+    public EstadoPedido estado { get; set; }
     public Cadete cadeteAsignado{ get; set; }
     // Constructor
     public Pedidos(int numero, string obs, Cliente cliente, Cadete cadete)
@@ -54,4 +54,11 @@ public class Pedidos //relacion fuerte con el cliente
     // {
     //     this.pedidos = pedidos;
     // }
+}
+public enum EstadoPedido
+{
+    Pendiente,
+    Asignado,
+    Entregado
+
 }

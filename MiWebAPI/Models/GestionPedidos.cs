@@ -47,17 +47,17 @@ public class GestionPedidos
             Console.WriteLine("No hay pedidos en la lista.");
         }
     }
-    public void CambioDeEstado(List<Pedidos> ListadoPedidos, int iDPedido)
-    {
-        foreach (var pedido in ListadoPedidos)
-        {
-            if (pedido.numero == iDPedido)
-            {
-                pedido.estado = 1;
-                break;
-            }
-        }
-    }
+    // public void CambioDeEstado(List<Pedidos> ListadoPedidos, int iDPedido)
+    // {
+    //     foreach (var pedido in ListadoPedidos)
+    //     {
+    //         if (pedido.numero == iDPedido)
+    //         {
+    //             pedido.estado = 1;
+    //             break;
+    //         }
+    //     }
+    // }
     public void ReasignacionDeCadete(List<Pedidos> ListadoPedidos, List<Cadete> ListadoCadetes, int IdCadete, int IdPedido)
     {
         foreach (var pedido in ListadoPedidos)

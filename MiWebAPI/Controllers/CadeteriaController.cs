@@ -71,7 +71,10 @@ namespace MiCadeteria
         {
             if (NuevaCadeteria.CantidadPedidos() > 0)
             {
-                
+                var respuesta = NuevaCadeteria.CambiarEstado(idPedido, NuevoEstado);
+                var GestionArchivos = new AccesoADatosJSON();
+                GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+                return Ok(respuesta);
             }
             return NotFound("No hay lista de pedidos");
         }
