@@ -182,7 +182,7 @@ public class Cadeteria
         //Pedidos nuevoPedido = null;
         foreach (var pedido in ListadoPedidos)
         {
-            if (pedido.numero == IdPedido)
+            if (pedido.numero == IdPedido && pedido.estado != EstadoPedido.Entregado)
             {
                 //nuevoPedido = pedido;
                 foreach (var cadete in ListaDeCadetes)
@@ -211,7 +211,7 @@ public class Cadeteria
     public void AgregarPedido(Pedidos NuevoPedido)
     {
         NuevoPedido.cadeteAsignado = null;
-        NuevoPedido.estado = 0;
+        NuevoPedido.estado = EstadoPedido.Pendiente;
         NuevoPedido.numero = CantidadPedidos() + 1;
         this.ListadoPedidos.Add(NuevoPedido);
     }
@@ -226,7 +226,22 @@ public class Cadeteria
         {
             if (Pedido.numero == idPedido)
             {
-                Pedido.estado = (EstadoPedido)NuevoEstado; //puedo usar el casteo
+                switch (NuevoEstado)
+                {
+                    case 0:
+                        Pedido.estado = EstadoPedido.Pendiente;
+                        break;
+                    case 1:
+                        Pedido.estado = EstadoPedido.Asignado;
+                        break;
+                    case 2:
+                        Pedido.estado = EstadoPedido.Entregado;
+                        break;
+                    default:
+                        return "Opcion incorrecta"; //¿Es correcto?
+                        //break;
+                }
+                //Pedido.estado = (EstadoPedido)NuevoEstado; //puedo usar el casteo
                 return $"Se le cambio el estado al pedido numero {Pedido.numero}";
             }
         }

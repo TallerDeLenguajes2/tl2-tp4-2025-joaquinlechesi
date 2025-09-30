@@ -50,8 +50,8 @@ namespace MiCadeteria
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
             NuevaCadeteria.AgregarPedido(NuevoPedido);
-            var GestionArchivos = new AccesoADatosJSON();
-            GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+            //var GestionArchivos = new AccesoADatosJSON();
+            DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
             return Created(); //incompleto
         }
         [HttpPut("putAsignarPedido")]
@@ -60,8 +60,8 @@ namespace MiCadeteria
             if (NuevaCadeteria.CantidadPedidos() > 0)
             {
                 var respuesta = NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
-                var GestionArchivos = new AccesoADatosJSON();
-                GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+                //var GestionArchivos = new AccesoADatosJSON();
+                DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
                 return Ok(respuesta);
             }
             return NotFound("No hay lista de pedidos");
@@ -72,8 +72,8 @@ namespace MiCadeteria
             if (NuevaCadeteria.CantidadPedidos() > 0)
             {
                 var respuesta = NuevaCadeteria.CambiarEstado(idPedido, NuevoEstado);
-                var GestionArchivos = new AccesoADatosJSON();
-                GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+                //var GestionArchivos = new AccesoADatosJSON();
+                DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
                 return Ok(respuesta);
             }
             return NotFound("No hay lista de pedidos");
@@ -81,7 +81,14 @@ namespace MiCadeteria
         [HttpPut("putCambiarCadetePedido")]
         public IActionResult PutCambiarCadetePedido(int idPedido, int idNuevoCadete)
         {
-            return Ok(); //incompleto
+            if (NuevaCadeteria.CantidadPedidos() > 0)
+            {
+                //GetPedidos();
+                var respuesta = NuevaCadeteria.AsignarCadeteAPedido(idNuevoCadete, idPedido);
+                DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+                return Ok(respuesta);
+            }
+            return NotFound("No hay lista de pedidos");
         }
     }
 }
