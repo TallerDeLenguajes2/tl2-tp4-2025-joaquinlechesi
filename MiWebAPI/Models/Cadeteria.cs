@@ -207,7 +207,12 @@ public class Cadeteria
     }
     public void AgregarPedido(Pedidos NuevoPedido)
     {
+        NuevoPedido.cadeteAsignado = null;
+        NuevoPedido.estado = 0;
         this.ListadoPedidos.Add(NuevoPedido);
     }
-    
+    public int CantidadPedidos()
+    {
+        return this.ListadoPedidos.Count();
+    }
 }

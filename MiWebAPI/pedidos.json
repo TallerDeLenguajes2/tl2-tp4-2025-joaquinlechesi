@@ -1,1 +1,1 @@
-[{"numero":1,"obs":"sandwith de milanesa","estado":0,"cadeteAsignado":{"Id":1,"Nombre":"jose","Direccion":"lamadrid 432","Telefono":"381"}},{"numero":2,"obs":"docena de empanadas","estado":0,"cadeteAsignado":null}]
+[{"numero":1,"obs":"sandwith de milanesa","estado":0,"cadeteAsignado":{"Id":1,"Nombre":"jose","Direccion":"lamadrid 432","Telefono":"381"}},{"numero":2,"obs":"docena de empanadas","estado":0,"cadeteAsignado":null},{"numero":3,"obs":"porcion de papas","estado":0,"cadeteAsignado":null}]

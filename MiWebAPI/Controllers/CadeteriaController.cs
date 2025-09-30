@@ -49,13 +49,10 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            NuevoPedido.cadeteAsignado = null;
-            NuevoPedido.estado = 0; //evita llenar campos que no son cargados todavia
             NuevoPedido.numero = NuevaCadeteria.ListadoPedidos.Count() + 1;
             NuevaCadeteria.AgregarPedido(NuevoPedido);
-            var GestionArchivos = new GestionPedidos(); //a mejorar
-            GestionArchivos.GuardarListadoPedido("pedidos.json", NuevaCadeteria.ListadoPedidos);
-            
+            var GestionArchivos = new AccesoADatosJSON();
+            GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
             return Created(); //incompleto
         }
         [HttpPut("putAsignarPedido")]
@@ -64,8 +61,8 @@ namespace MiCadeteria
             if (NuevaCadeteria.ListadoPedidos.Count() > 0)
             {
                 NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
-                var GestionArchivos = new GestionPedidos(); //a mejorar
-                GestionArchivos.GuardarListadoPedido("pedidos.json", NuevaCadeteria.ListadoPedidos);
+                var GestionArchivos = new AccesoADatosJSON();
+                GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
                 return Ok();
             }
             return NotFound("No hay lista de pedidos");
@@ -73,6 +70,7 @@ namespace MiCadeteria
         [HttpPut("putCambiarEstadoPedido")]
         public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
         {
+
             return Ok(); //incompleto
         }
         [HttpPut("putCambiarCadetePedido")]

@@ -37,8 +37,14 @@ public class AccesoADatosJSON : IAccesoADatos
         }
         return new List<Pedidos>(); //sería como devolver una lista vacia
     }
-    public void EscrituraDeDatos(string datos)
+    public void GuardarPedidos(List<Pedidos> ListadoActualDePedidos, string path)
     {
-
+        string ListadoPedidos = JsonSerializer.Serialize<List<Pedidos>>(ListadoActualDePedidos);
+        FileStream fs = new FileStream(path, FileMode.Create);
+        using (StreamWriter st = new StreamWriter(fs))
+        {
+            st.WriteLine(ListadoPedidos);
+            st.Close();
+        }
     }
 }
