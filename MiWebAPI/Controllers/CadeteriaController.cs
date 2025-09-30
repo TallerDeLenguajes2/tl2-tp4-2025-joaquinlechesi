@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using MiCadeteria.Models;
 using Microsoft.AspNetCore.Mvc; //siempre implementar
 
@@ -25,7 +26,7 @@ namespace MiCadeteria
         [HttpGet("getPedidos")]
         public IActionResult GetPedidos() //retorna la lista de pedidos //funcionando
         {
-            if (NuevaCadeteria.ListadoPedidos != null)
+            if (NuevaCadeteria.ListadoPedidos.Count() != 0)
             {
                 return Ok(NuevaCadeteria.ListadoPedidos);
             }
@@ -34,7 +35,7 @@ namespace MiCadeteria
         [HttpGet("getCadetes")]
         public ActionResult GetCadetes()
         {
-            if (this.NuevaCadeteria.ListaDeCadetes != null)
+            if (this.NuevaCadeteria.ListaDeCadetes.Count() != 0)
             {
                 return Ok(NuevaCadeteria.ListaDeCadetes);
             }
@@ -60,7 +61,14 @@ namespace MiCadeteria
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)
         {
-            return Ok(); //incompleto
+            if (NuevaCadeteria.ListadoPedidos.Count() > 0)
+            {
+                NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
+                var GestionArchivos = new GestionPedidos(); //a mejorar
+                GestionArchivos.GuardarListadoPedido("pedidos.json", NuevaCadeteria.ListadoPedidos);
+                return Ok();
+            }
+            return NotFound("No hay lista de pedidos");
         }
         [HttpPut("putCambiarEstadoPedido")]
         public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
