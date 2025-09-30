@@ -177,7 +177,7 @@ public class Cadeteria
         }
         return (resultado * 500);
     }
-    public void AsignarCadeteAPedido(int IdCadete, int IdPedido)
+    public string AsignarCadeteAPedido(int IdCadete, int IdPedido)
     {
         //Pedidos nuevoPedido = null;
         foreach (var pedido in ListadoPedidos)
@@ -190,12 +190,14 @@ public class Cadeteria
                     if (cadete.Id == IdCadete)
                     {
                         pedido.cadeteAsignado = cadete;
-                        break;
+                        return $"Se asigno el pedido numero {pedido.numero} al cadete numero {cadete.Id}";
+                        //break;
                     }
                 }
-                break;
+                //break;
             }
         }
+        return "No se encontro el pedido o el cadete";
         // if (nuevoPedido != null)
         // {
         //     Cadete nuevoCadete = null;
@@ -216,4 +218,5 @@ public class Cadeteria
     {
         return this.ListadoPedidos.Count();
     }
+    //public void
 }

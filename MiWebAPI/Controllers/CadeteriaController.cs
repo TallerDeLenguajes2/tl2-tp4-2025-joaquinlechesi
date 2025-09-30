@@ -59,18 +59,21 @@ namespace MiCadeteria
         {
             if (NuevaCadeteria.CantidadPedidos() > 0)
             {
-                NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
+                var respuesta = NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
                 var GestionArchivos = new AccesoADatosJSON();
                 GestionArchivos.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
-                return Ok();
+                return Ok(respuesta);
             }
             return NotFound("No hay lista de pedidos");
         }
         [HttpPut("putCambiarEstadoPedido")]
         public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
         {
-
-            return Ok(); //incompleto
+            if (NuevaCadeteria.CantidadPedidos() > 0)
+            {
+                
+            }
+            return NotFound("No hay lista de pedidos");
         }
         [HttpPut("putCambiarCadetePedido")]
         public IActionResult PutCambiarCadetePedido(int idPedido, int idNuevoCadete)
