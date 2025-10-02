@@ -10,7 +10,7 @@ namespace MiCadeteria
     {
         private IAccesoADatos DatosCarga = null;
         private Cadeteria NuevaCadeteria = null;
-        //Informe NuevoInforme = null; //falta hacer informe
+        Informe NuevoInforme = null; //falta hacer informe
         public CadeteriaController() //recordar ingresar el nombre de la clase en el "controller"
         {
             //constructor de la clase
@@ -44,7 +44,9 @@ namespace MiCadeteria
         [HttpGet("getInforme")] //pendiente
         public IActionResult GetInforme()
         {
-            return Ok(); //incompleto //para el final
+            //var Monto = NuevaCadeteria.MontoGanado();
+            NuevoInforme = new Informe(NuevaCadeteria.MontoGanado(), NuevaCadeteria.CantidadPedidosEntregados(), NuevaCadeteria.PromedioEnviosTotal());
+            return Ok(NuevoInforme); //incompleto //para el final
         }
         [HttpPost("postAgregarPedido")] //debo guardar el pedido
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)

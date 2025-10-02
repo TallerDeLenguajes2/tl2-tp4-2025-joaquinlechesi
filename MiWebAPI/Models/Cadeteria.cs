@@ -170,7 +170,7 @@ public class Cadeteria
         double resultado = 0;
         foreach (var pedido in ListadoPedidos)
         {
-            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado == EstadoPedido.Entregado ))
+            if ((pedido.cadeteAsignado != null) && (pedido.cadeteAsignado.Id == iDcadete) && (pedido.estado == EstadoPedido.Entregado))
             {
                 resultado++;
             }
@@ -221,7 +221,7 @@ public class Cadeteria
     }
     public string CambiarEstado(int idPedido, int NuevoEstado)
     {
-        
+
         foreach (var Pedido in ListadoPedidos)
         {
             if (Pedido.numero == idPedido)
@@ -246,5 +246,25 @@ public class Cadeteria
             }
         }
         return "No se encontro el pedido";
+    }
+    public double MontoGanado()
+    {
+        int monto = 0;
+        foreach (var Pedido in ListadoPedidos)
+        {
+            if (Pedido.estado == EstadoPedido.Entregado)
+            {
+                monto = monto + 1;
+            }
+        }
+        return monto * 500;
+    }
+    public int CantidadPedidosEntregados()
+    {
+        return ListadoPedidos.Count(n => n.estado == EstadoPedido.Entregado);
+    }
+    public double PromedioEnviosTotal()
+    {
+        return ListadoPedidos.Count() / CantidadPedidosEntregados();
     }
 }
