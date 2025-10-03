@@ -7,5 +7,5 @@ public interface IAccesoADatos
     List<Cadete> LecturaDeCadetes(string ruta);
     void GuardarPedidos(List<Pedidos> ListadoActualDePedidos, string path);
     List<Pedidos> ListadoDePedidos(string path);
-
+    public void GuardarInforme(Informe NuevoInforme, string path);
 }
