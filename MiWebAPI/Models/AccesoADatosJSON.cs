@@ -47,4 +47,14 @@ public class AccesoADatosJSON : IAccesoADatos
             st.Close();
         }
     }
+    public void GuardarInforme(Informe NuevoInforme, string path)
+    {
+        string InformeAGuardar = JsonSerializer.Serialize<Informe>(NuevoInforme);
+        FileStream fs = new FileStream(path, FileMode.Create);
+        using (StreamWriter st = new StreamWriter(fs))
+        {
+            st.WriteLine(InformeAGuardar);
+            st.Close();
+        }
+    }
 }
