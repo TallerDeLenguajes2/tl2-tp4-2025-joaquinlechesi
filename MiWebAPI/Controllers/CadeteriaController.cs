@@ -46,9 +46,9 @@ namespace MiCadeteria
         {
             //var Monto = NuevaCadeteria.MontoGanado();
             NuevoInforme = new Informe(NuevaCadeteria.MontoGanado(), NuevaCadeteria.CantidadPedidosEntregados(), NuevaCadeteria.PromedioEnviosTotal());
-            return Ok(NuevoInforme); //incompleto //para el final
+            return Ok(NuevoInforme); //incompleto 
         }
-        [HttpPost("postAgregarPedido")] //debo guardar el pedido
+        [HttpPost("postAgregarPedido")]
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
             NuevaCadeteria.AgregarPedido(NuevoPedido);

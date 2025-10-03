@@ -261,10 +261,11 @@ public class Cadeteria
     }
     public int CantidadPedidosEntregados()
     {
-        return ListadoPedidos.Count(n => n.estado == EstadoPedido.Entregado);
+        return ListadoPedidos == null ? 0 : ListadoPedidos.Count(n => n.estado == EstadoPedido.Entregado); //si el listado de pedidos es null retorna 0
     }
     public double PromedioEnviosTotal()
     {
-        return ListadoPedidos.Count() / CantidadPedidosEntregados();
+        return ListadoPedidos == null ? 0 : (CantidadPedidosEntregados() == 0 ? 0 : ListadoPedidos.Count() / CantidadPedidosEntregados()); //si el listado de pedidos es null retorna 0, ademas verifico que si es 0 la cantidad de pedidos entregados retorne un 0 directamente
+        //return ListadoPedidos.Count() / CantidadPedidosEntregados(); //la lista de pedidos puede ser null
     }
 }
