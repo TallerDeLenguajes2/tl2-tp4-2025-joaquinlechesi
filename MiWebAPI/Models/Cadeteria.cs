@@ -212,7 +212,8 @@ public class Cadeteria
     {
         NuevoPedido.cadeteAsignado = null;
         NuevoPedido.estado = EstadoPedido.Pendiente;
-        NuevoPedido.numero = CantidadPedidos() + 1;
+        NuevoPedido.numero = ListadoPedidos.Count() == 0 ? 1 : ListadoPedidos.Max(c => c.numero) + 1; //la lista puede no tener elemenos
+        //NuevoPedido.numero = CantidadPedidos() + 1; //cambiar
         this.ListadoPedidos.Add(NuevoPedido);
     }
     public int CantidadPedidos()

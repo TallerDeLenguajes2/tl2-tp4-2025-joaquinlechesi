@@ -46,7 +46,7 @@ namespace MiCadeteria
         {
             //var Monto = NuevaCadeteria.MontoGanado();
             NuevoInforme = new Informe(NuevaCadeteria.MontoGanado(), NuevaCadeteria.CantidadPedidosEntregados(), NuevaCadeteria.PromedioEnviosTotal());
-            return Ok(NuevoInforme); //incompleto 
+            return Ok(NuevoInforme);
         }
         [HttpPost("postAgregarPedido")]
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
@@ -54,7 +54,7 @@ namespace MiCadeteria
             NuevaCadeteria.AgregarPedido(NuevoPedido);
             //var GestionArchivos = new AccesoADatosJSON();
             DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
-            return Created(); //incompleto
+            return Created(); //listo
         }
         [HttpPut("putAsignarPedido")]
         public IActionResult PutAsignarPedido(int idPedido, int idCadete)
