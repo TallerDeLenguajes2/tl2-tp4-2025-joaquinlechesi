@@ -30,16 +30,16 @@ namespace MiCadeteria
             {
                 return Ok(NuevaCadeteria.ListadoPedidos);
             }
-            return BadRequest("No hay lista de pedidos en la cadeteria");
+            return BadRequest("No hay lista de pedidos en la cadeteria"); //listo
         }
         [HttpGet("getCadetes")]
         public ActionResult GetCadetes()
         {
-            if (this.NuevaCadeteria.ListaDeCadetes.Count() != 0)
+            if (NuevaCadeteria.ListaDeCadetes != null) //RECORRDAR: si no se crea la lista de cadetes queda como null
             {
                 return Ok(NuevaCadeteria.ListaDeCadetes);
             }
-            return BadRequest("No hay lista de cadetes"); //mensaje pendiente de corregir
+            return BadRequest("No hay lista de cadetes"); //listo
         }
         [HttpGet("getInforme")] //pendiente
         public IActionResult GetInforme()
