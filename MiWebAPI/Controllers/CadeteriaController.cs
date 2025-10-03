@@ -41,12 +41,13 @@ namespace MiCadeteria
             }
             return BadRequest("No hay lista de cadetes"); //listo
         }
-        [HttpGet("getInforme")] //pendiente
+        [HttpGet("getInforme")]
         public IActionResult GetInforme()
         {
             //var Monto = NuevaCadeteria.MontoGanado();
             NuevoInforme = new Informe(NuevaCadeteria.MontoGanado(), NuevaCadeteria.CantidadPedidosEntregados(), NuevaCadeteria.PromedioEnviosTotal());
-            return Ok(NuevoInforme);
+            DatosCarga.GuardarInforme(NuevoInforme, "informe.json");
+            return Ok(NuevoInforme);//listo
         }
         [HttpPost("postAgregarPedido")]
         public IActionResult PostAgregarPedido([FromBody] Pedidos NuevoPedido)
@@ -66,19 +67,19 @@ namespace MiCadeteria
                 DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
                 return Ok(respuesta);
             }
-            return NotFound("No hay lista de pedidos");
+            return NotFound("No hay lista de pedidos"); //listo
         }
         [HttpPut("putCambiarEstadoPedido")]
         public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
         {
-            if (NuevaCadeteria.CantidadPedidos() > 0)
+            if (NuevaCadeteria.ListadoPedidos != null)
             {
                 var respuesta = NuevaCadeteria.CambiarEstado(idPedido, NuevoEstado);
                 //var GestionArchivos = new AccesoADatosJSON();
                 DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
-                return Ok(respuesta);
+                return Ok(respuesta); //listo
             }
-            return NotFound("No hay lista de pedidos");
+            return NotFound("No hay lista de pedidos"); //listo
         }
         [HttpPut("putCambiarCadetePedido")]
         public IActionResult PutCambiarCadetePedido(int idPedido, int idNuevoCadete)
@@ -90,7 +91,9 @@ namespace MiCadeteria
                 DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
                 return Ok(respuesta);
             }
-            return NotFound("No hay lista de pedidos");
+            return NotFound("No hay lista de pedidos"); //listo
         }
     }
 }
+
+//FALTA IMPLEMENTAR LA CLASE ESTATICA PARA LA PERSISTENCIA DE DATOS     
