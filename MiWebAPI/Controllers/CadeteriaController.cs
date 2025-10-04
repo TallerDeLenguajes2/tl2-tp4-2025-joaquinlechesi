@@ -18,11 +18,20 @@ namespace MiCadeteria
             ADCadetes = new AccesoADatosCadete();
             ADPedidos = new AccesoADatosPedidos();
 
-            cadeteria = ADCadeteria.Obtener();
-            //cadeteria.AgregarListaCadetes(ADCadetes.Obtener()); //queda comentado para evitar que se muestre como error
+            cadeteria = ADCadeteria.Obtener(); //funciona, crea la cadeteria
+            cadeteria.AgregarListaCadetes(ADCadetes.Obtener()); //queda comentado para evitar que se muestre como error
             //cadeteria.AgregarListaPedidos(ADPedidos.Obtener()); //queda comentado para evitar que se muestre como error
         }
-
+        [HttpGet("getCadeteria")] //solo de prueba
+        public ActionResult<Cadeteria> GetCadeteria() //retorna la lista de pedidos //funcionando
+        {
+            return Ok(cadeteria);
+        }
+        [HttpGet("getCadetes")]
+        public ActionResult<List<Cadete>> GetCadetes()
+        {
+            return Ok(cadeteria.ListaDeCadetes); //retorna bien la lista
+        }
     }
 }
         // private IAccesoADatos DatosCarga = null;
