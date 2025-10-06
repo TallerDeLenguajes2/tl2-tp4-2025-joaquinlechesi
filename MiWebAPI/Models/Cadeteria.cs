@@ -275,4 +275,8 @@ public class Cadeteria
     {
         this.ListaDeCadetes = Lista;
     }
+    public void AgregarListaPedidos(List<Pedidos> Lista)
+    {
+        this.ListadoPedidos = Lista;
+    }
 }

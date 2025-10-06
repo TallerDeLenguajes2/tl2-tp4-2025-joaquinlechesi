@@ -19,13 +19,23 @@ namespace MiCadeteria
             ADPedidos = new AccesoADatosPedidos();
 
             cadeteria = ADCadeteria.Obtener(); //funciona, crea la cadeteria
-            cadeteria.AgregarListaCadetes(ADCadetes.Obtener()); //queda comentado para evitar que se muestre como error
-            //cadeteria.AgregarListaPedidos(ADPedidos.Obtener()); //queda comentado para evitar que se muestre como error
+            cadeteria.AgregarListaCadetes(ADCadetes.Obtener());
+            cadeteria.AgregarListaPedidos(ADPedidos.Obtener()); //queda comentado para evitar que se muestre como error
         }
         [HttpGet("getCadeteria")] //solo de prueba
         public ActionResult<Cadeteria> GetCadeteria() //retorna la lista de pedidos //funcionando
         {
             return Ok(cadeteria);
+        }
+        [HttpGet("getPedidos")]
+        public ActionResult<List<Pedidos>> GetPedidos() //retorna la lista de pedidos //funcionando
+        {
+            return cadeteria.ListadoPedidos.Count() == 0 ? BadRequest("No hay lista de pedidos en la cadeteria") : Ok(cadeteria.ListadoPedidos); //controla bien cuando hay elemenos y cuando no hay
+            //if (NuevaCadeteria.CantidadPedidos() > 0)
+            //{
+            //    return Ok(NuevaCadeteria.ListadoPedidos);
+            //}
+            //return BadRequest("No hay lista de pedidos en la cadeteria"); //listo
         }
         [HttpGet("getCadetes")]
         public ActionResult<List<Cadete>> GetCadetes()
