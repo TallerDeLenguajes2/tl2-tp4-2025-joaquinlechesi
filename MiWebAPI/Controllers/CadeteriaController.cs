@@ -42,11 +42,7 @@ namespace MiCadeteria
         [HttpPost("postAgregarPedido")]
         public ActionResult<Pedidos> PostAgregarPedido([FromBody] Pedidos NuevoPedido)
         {
-            NuevoPedido.cadeteAsignado = null;
-            NuevoPedido.estado = EstadoPedido.Pendiente;
-            NuevoPedido.numero = cadeteria.ListadoPedidos.Count() == 0 ? 1 : cadeteria.ListadoPedidos.Max(c => c.numero) + 1; //la lista puede no tener elemenos
             cadeteria.AgregarPedido(NuevoPedido);
-            //var GestionArchivos = new AccesoADatosJSON();
             ADPedidos.Guardar(cadeteria.ListadoPedidos); //funciona
             return Ok(NuevoPedido); //retorna el objeto NuevoPedido
         }
@@ -65,6 +61,18 @@ namespace MiCadeteria
             ADPedidos.Guardar(cadeteria.ListadoPedidos);
             return Ok(resultado); //funciona
         }
+        // [HttpPut("putCambiarEstadoPedido")]
+        // public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
+        // {
+        //     if (NuevaCadeteria.ListadoPedidos != null)
+        //     {
+        //         var respuesta = NuevaCadeteria.CambiarEstado(idPedido, NuevoEstado);
+        //         //var GestionArchivos = new AccesoADatosJSON();
+        //         DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+        //         return Ok(respuesta); //listo
+        //     }
+        //     return NotFound("No hay lista de pedidos"); //listo
+        // }
     }
 }
         // private IAccesoADatos DatosCarga = null;

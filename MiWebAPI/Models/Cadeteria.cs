@@ -219,7 +219,10 @@ public class Cadeteria
     public void AgregarPedido(Pedidos NuevoPedido)
     {
         //NuevoPedido.numero = CantidadPedidos() + 1; //cambiar
-        this.ListadoPedidos.Add(NuevoPedido);
+        NuevoPedido.cadeteAsignado = null;
+        NuevoPedido.estado = EstadoPedido.Pendiente;
+        NuevoPedido.numero = ListadoPedidos.Count() == 0 ? 1 : ListadoPedidos.Max(c => c.numero) + 1; //la lista puede no tener elemenos
+        this.ListadoPedidos.Add(NuevoPedido); // si la clase cadeteria es un "servicio" entonces aqui trabajo la logica
     }
     public int CantidadPedidos()
     {
