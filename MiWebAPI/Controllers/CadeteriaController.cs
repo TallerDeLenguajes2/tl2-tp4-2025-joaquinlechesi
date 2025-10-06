@@ -31,16 +31,39 @@ namespace MiCadeteria
         public ActionResult<List<Pedidos>> GetPedidos() //retorna la lista de pedidos //funcionando
         {
             return cadeteria.ListadoPedidos.Count() == 0 ? BadRequest("No hay lista de pedidos en la cadeteria") : Ok(cadeteria.ListadoPedidos); //controla bien cuando hay elemenos y cuando no hay
-            //if (NuevaCadeteria.CantidadPedidos() > 0)
-            //{
-            //    return Ok(NuevaCadeteria.ListadoPedidos);
-            //}
-            //return BadRequest("No hay lista de pedidos en la cadeteria"); //listo
         }
         [HttpGet("getCadetes")]
         public ActionResult<List<Cadete>> GetCadetes()
         {
             return Ok(cadeteria.ListaDeCadetes); //retorna bien la lista
+        }
+        // falta GetInforme
+
+        [HttpPost("postAgregarPedido")]
+        public ActionResult<Pedidos> PostAgregarPedido([FromBody] Pedidos NuevoPedido)
+        {
+            NuevoPedido.cadeteAsignado = null;
+            NuevoPedido.estado = EstadoPedido.Pendiente;
+            NuevoPedido.numero = cadeteria.ListadoPedidos.Count() == 0 ? 1 : cadeteria.ListadoPedidos.Max(c => c.numero) + 1; //la lista puede no tener elemenos
+            cadeteria.AgregarPedido(NuevoPedido);
+            //var GestionArchivos = new AccesoADatosJSON();
+            ADPedidos.Guardar(cadeteria.ListadoPedidos); //funciona
+            return Ok(NuevoPedido); //retorna el objeto NuevoPedido
+        }
+        [HttpPut("putAsignarPedido")]
+        public ActionResult<string> PutAsignarPedido(int idPedido, int idCadete)
+        {
+            //if (NuevaCadeteria.CantidadPedidos() > 0)
+            //{
+            //    var respuesta = NuevaCadeteria.AsignarCadeteAPedido(idCadete, idPedido);
+            //    //var GestionArchivos = new AccesoADatosJSON();
+            //    DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
+            //    return Ok(respuesta);
+            //}
+            if (cadeteria.ListadoPedidos.Count() == 0) return NotFound("No hay lista de pedidos");
+            var resultado = cadeteria.AsignarCadeteAPedido(idCadete, idPedido);
+            ADPedidos.Guardar(cadeteria.ListadoPedidos);
+            return Ok(resultado); //funciona
         }
     }
 }

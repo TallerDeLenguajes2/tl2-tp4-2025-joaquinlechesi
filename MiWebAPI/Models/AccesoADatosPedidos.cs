@@ -19,7 +19,17 @@ namespace MiCadeteria
         }
         public void Guardar(List<Pedidos> Pedidos)
         {
-            //incompleto
+            if (File.Exists(_path))
+            {
+                string ListadoPedidos = JsonSerializer.Serialize<List<Pedidos>>(Pedidos);
+                FileStream fs = new FileStream(_path, FileMode.Create);
+                using (StreamWriter st = new StreamWriter(fs))
+                {
+                    st.WriteLine(ListadoPedidos);
+                    st.Close();
+                }
+                //return NuevaListaDeCadetes;
+            }
         }
     }
 }

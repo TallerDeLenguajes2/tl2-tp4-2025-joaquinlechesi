@@ -182,25 +182,31 @@ public class Cadeteria
     public string AsignarCadeteAPedido(int IdCadete, int IdPedido)
     {
         //Pedidos nuevoPedido = null;
-        foreach (var pedido in ListadoPedidos)
-        {
-            if (pedido.numero == IdPedido && pedido.estado != EstadoPedido.Entregado)
-            {
-                //nuevoPedido = pedido;
-                foreach (var cadete in ListaDeCadetes)
-                {
-                    if (cadete.Id == IdCadete)
-                    {
-                        pedido.cadeteAsignado = cadete;
-                        pedido.estado = EstadoPedido.Asignado;
-                        return $"Se asigno el pedido numero {pedido.numero} al cadete numero {cadete.Id}";
-                        //break;
-                    }
-                }
-                //break;
-            }
-        }
-        return "No se encontro el pedido o el cadete";
+        //foreach (var pedido in ListadoPedidos)
+        //{
+        //    if (pedido.numero == IdPedido && pedido.estado != EstadoPedido.Entregado)
+        //    {
+        //        //nuevoPedido = pedido;
+        //        foreach (var cadete in ListaDeCadetes)
+        //        {
+        //            if (cadete.Id == IdCadete)
+        //            {
+        //                pedido.cadeteAsignado = cadete;
+        //                pedido.estado = EstadoPedido.Asignado;
+        //                return $"Se asigno el pedido numero {pedido.numero} al cadete numero {cadete.Id}";
+        //                //break;
+        //            }
+        //        }
+        //        //break;
+        //    }
+        //}
+        //return "No se encontro el pedido o el cadete";
+        var pedidoEncontrado = ListadoPedidos.FirstOrDefault(c => c.numero == IdPedido && c.estado == EstadoPedido.Pendiente);
+        if (pedidoEncontrado == null) return "No se encontro el pedido";
+        var cadeteEncontrado = ListaDeCadetes.FirstOrDefault(c => c.Id == IdCadete);
+        if (cadeteEncontrado == null) return "No se encontro el cadete";
+        pedidoEncontrado.cadeteAsignado = cadeteEncontrado;
+        return $"Se asigno el pedido numero {pedidoEncontrado.numero} al cadete numero {cadeteEncontrado.Id}";
         // if (nuevoPedido != null)
         // {
         //     Cadete nuevoCadete = null;
@@ -212,9 +218,6 @@ public class Cadeteria
     }
     public void AgregarPedido(Pedidos NuevoPedido)
     {
-        NuevoPedido.cadeteAsignado = null;
-        NuevoPedido.estado = EstadoPedido.Pendiente;
-        NuevoPedido.numero = ListadoPedidos.Count() == 0 ? 1 : ListadoPedidos.Max(c => c.numero) + 1; //la lista puede no tener elemenos
         //NuevoPedido.numero = CantidadPedidos() + 1; //cambiar
         this.ListadoPedidos.Add(NuevoPedido);
     }
