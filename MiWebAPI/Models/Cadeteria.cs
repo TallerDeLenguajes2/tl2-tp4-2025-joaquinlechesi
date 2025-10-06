@@ -206,6 +206,7 @@ public class Cadeteria
         var cadeteEncontrado = ListaDeCadetes.FirstOrDefault(c => c.Id == IdCadete);
         if (cadeteEncontrado == null) return "No se encontro el cadete";
         pedidoEncontrado.cadeteAsignado = cadeteEncontrado;
+        pedidoEncontrado.estado = EstadoPedido.Asignado;
         return $"Se asigno el pedido numero {pedidoEncontrado.numero} al cadete numero {cadeteEncontrado.Id}";
         // if (nuevoPedido != null)
         // {
@@ -230,31 +231,49 @@ public class Cadeteria
     }
     public string CambiarEstado(int idPedido, int NuevoEstado)
     {
-
-        foreach (var Pedido in ListadoPedidos)
+        var pedido = ListadoPedidos.FirstOrDefault(c => c.numero == idPedido);
+        if (pedido == null) return "No existe el pedido";
+        var respuesta = $"Se modifico el estado del pedido numero {pedido.numero}";
+        switch (NuevoEstado)
         {
-            if (Pedido.numero == idPedido)
-            {
-                switch (NuevoEstado)
-                {
-                    case 0:
-                        Pedido.estado = EstadoPedido.Pendiente;
-                        break;
-                    case 1:
-                        Pedido.estado = EstadoPedido.Asignado;
-                        break;
-                    case 2:
-                        Pedido.estado = EstadoPedido.Entregado;
-                        break;
-                    default:
-                        return "Opcion incorrecta"; //¿Es correcto?
-                        //break;
-                }
-                //Pedido.estado = (EstadoPedido)NuevoEstado; //puedo usar el casteo
-                return $"Se le cambio el estado al pedido numero {Pedido.numero}";
-            }
+            case 0:
+                pedido.estado = EstadoPedido.Pendiente;
+                break;
+            case 1:
+                pedido.estado = EstadoPedido.Asignado;
+                break;
+            case 2:
+                pedido.estado = EstadoPedido.Entregado;
+                break;
+            default:
+                respuesta = "Opcion incorrecta";
+                break;
         }
-        return "No se encontro el pedido";
+        return respuesta;
+        //foreach (var Pedido in ListadoPedidos)
+        //{
+        //    if (Pedido.numero == idPedido)
+        //    {
+        //        switch (NuevoEstado)
+        //        {
+        //            case 0:
+        //                Pedido.estado = EstadoPedido.Pendiente;
+        //                break;
+        //            case 1:
+        //                Pedido.estado = EstadoPedido.Asignado;
+        //                break;
+        //            case 2:
+        //                Pedido.estado = EstadoPedido.Entregado;
+        //                break;
+        //            default:
+        //                return "Opcion incorrecta"; //¿Es correcto?
+        //                //break;
+        //        }
+        //        //Pedido.estado = (EstadoPedido)NuevoEstado; //puedo usar el casteo
+        //        return $"Se le cambio el estado al pedido numero {Pedido.numero}";
+        //    }
+        //}
+        //return "No se encontro el pedido";
     }
     public double MontoGanado()
     {

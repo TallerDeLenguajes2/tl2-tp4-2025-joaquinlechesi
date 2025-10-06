@@ -61,18 +61,14 @@ namespace MiCadeteria
             ADPedidos.Guardar(cadeteria.ListadoPedidos);
             return Ok(resultado); //funciona
         }
-        // [HttpPut("putCambiarEstadoPedido")]
-        // public IActionResult PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
-        // {
-        //     if (NuevaCadeteria.ListadoPedidos != null)
-        //     {
-        //         var respuesta = NuevaCadeteria.CambiarEstado(idPedido, NuevoEstado);
-        //         //var GestionArchivos = new AccesoADatosJSON();
-        //         DatosCarga.GuardarPedidos(NuevaCadeteria.ListadoPedidos, "pedidos.json");
-        //         return Ok(respuesta); //listo
-        //     }
-        //     return NotFound("No hay lista de pedidos"); //listo
-        // }
+        [HttpPut("putCambiarEstadoPedido")]
+        public ActionResult<string> PutCambiarEstadoPedido(int idPedido, int NuevoEstado)
+        {
+            if (cadeteria.ListadoPedidos.Count() == 0) return NotFound("No hay lista de pedidos");
+            var respuesta = cadeteria.CambiarEstado(idPedido, NuevoEstado);
+            ADPedidos.Guardar(cadeteria.ListadoPedidos);
+            return Ok(respuesta); //funciona
+        }
     }
 }
         // private IAccesoADatos DatosCarga = null;
